@@ -1,4 +1,4 @@
-terraform {
+/* terraform {
   # Backend where the tfstate file will be saved
   backend "s3" {
     bucket = "terraform-bucketforlearning4"
@@ -9,7 +9,7 @@ terraform {
     encrypt = true
   }
 }
-
+ */
 module "backend" {
   source = "./modules/s3-backend"
 }

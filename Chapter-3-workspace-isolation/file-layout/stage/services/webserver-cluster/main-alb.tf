@@ -1,4 +1,4 @@
-terraform {
+/* terraform {
   # Backend where the tfstate file will be saved
   backend "s3" {
     bucket = "terraform-bucketforlearning4"
@@ -8,7 +8,7 @@ terraform {
     dynamodb_table = "terraform-state-locks4"
     encrypt = true
   }
-}
+} */
 
 # Deploys Instances under ALB
 module "test_ALB" {
@@ -17,6 +17,7 @@ module "test_ALB" {
   sg_id      = module.security_group.sg_id
   alb_sg     = module.security_group.alb_sg
 }
+
 module "security_group" {
   source = "./modules/security-group"
 }

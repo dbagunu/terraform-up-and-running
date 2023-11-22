@@ -2,7 +2,11 @@ resource "aws_launch_configuration" "test_launch_config" {
   image_id        = var.ami_id
   instance_type   = var.instance_type
   security_groups = [var.sg_id]
-  user_data       = file("init.sh")
+  user_data       = templatefile("init.sh", {
+    db_address = data.terraform_remote_state.db.outputs.address
+    db_port = data.terraform_remote_state.db.outputs.port
+  })
+
   lifecycle {
     create_before_destroy = true
   }

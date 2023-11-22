@@ -1,11 +1,12 @@
 resource "aws_security_group" "test_sg" {
   name = "instance-sg"
+  description = "Security Group allowing ingress from ALB SG"
   # Allow inbound HTTP requests
   ingress {
     from_port   = var.instance_server_port
     to_port     = var.instance_server_port
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.alb_sg.id]
   }
 }
 

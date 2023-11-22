@@ -29,7 +29,7 @@ variable "max_cap" {
   default = 2
 }
 variable "desired_cap" {
-  default = 1
+  default = 2
 }
 
 # Load Balancer variables

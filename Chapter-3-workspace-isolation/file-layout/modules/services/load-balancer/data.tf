@@ -12,7 +12,7 @@ data "terraform_remote_state" "db" {
 
   config = {
     bucket = var.s3_tfstate_bucket
-    key = var.s3_key_tfstate
+    key = var.db_key_tfstate
     region = "ap-southeast-1"
   }
 }

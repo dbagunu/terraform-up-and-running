@@ -1,10 +1,15 @@
 variable "identifier" {
-  default = "terraform-rds-mysql"
+  description = "Name for MySQL DB"
+  type = string
+}
+
+variable "engine_kind" {
+  description = "Type of RDB (MySQL, PostgreSQL, MariaDB, or SQL Server)"
   type = string
 }
 
 variable "storage_size" {
-  default = 5
+  description = "Storage size of MySQL DB"
   type = number
 }
 

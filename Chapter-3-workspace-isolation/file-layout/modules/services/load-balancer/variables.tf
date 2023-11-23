@@ -5,9 +5,8 @@ variable "ami_id" {
   default     = "ami-078c1149d8ad719a7" # Ubuntu 22.04; Free Tier
 }
 variable "instance_type" {
-  description = "Selects the instance type used for the EC2 instance"
+  description = "Selects the instance type used for the EC2 instance (e.g. t2.micro)"
   type        = string
-  default     = "t2.micro" # Free Tier
 }
 variable "tag_name" {
   default = {
@@ -79,6 +78,6 @@ variable "s3_tfstate_bucket" {
   type = string
 }
 
-variable "s3_key_tfstate" {
+variable "db_key_tfstate" {
   description = "Key of the remote tfstate of mysql"
 }

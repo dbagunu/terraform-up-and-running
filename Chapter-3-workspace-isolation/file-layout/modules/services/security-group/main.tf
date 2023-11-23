@@ -1,5 +1,5 @@
-resource "aws_security_group" "test_sg" {
-  name = "instance-sg"
+resource "aws_security_group" "instance_sg" {
+  name = "${var.cluster_name}-instance-sg"
   description = "Security Group allowing ingress from ALB SG"
   # Allow inbound HTTP requests
   ingress {
@@ -11,7 +11,7 @@ resource "aws_security_group" "test_sg" {
 }
 
 resource "aws_security_group" "alb_sg" {
-  name = "test-alb-sg"
+  name = "${var.cluster_name}-alb-sg"
   # Allow inbound HTTP requests
   ingress {
     from_port   = var.alb_port

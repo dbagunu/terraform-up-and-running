@@ -10,3 +10,8 @@ variable "alb_port" {
   default     = 80
   type        = number
 }
+
+variable "cluster_name" {
+  description = "Naming the security group with respect to its cluster"
+  type = string
+}

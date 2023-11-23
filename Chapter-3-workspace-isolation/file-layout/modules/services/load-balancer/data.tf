@@ -11,8 +11,8 @@ data "terraform_remote_state" "db" {
   backend = "s3"
 
   config = {
-    bucket = "terraform-bucketforlearning4"
-    key = "stage/data-stores/mysql/terraform.state"
+    bucket = var.s3_tfstate_bucket
+    key = var.s3_key_tfstate
     region = "ap-southeast-1"
   }
 }

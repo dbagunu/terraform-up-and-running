@@ -2,7 +2,7 @@ resource "aws_launch_configuration" "test_launch_config" {
   image_id        = var.ami_id
   instance_type   = var.instance_type
   security_groups = [var.sg_id]
-  user_data       = templatefile("init.sh", {
+  user_data       = templatefile(var.user_data, {
     db_address = data.terraform_remote_state.db.outputs.address
     db_port = data.terraform_remote_state.db.outputs.port
   })
@@ -25,13 +25,13 @@ resource "aws_autoscaling_group" "test_asg" {
 
   tag {
     key                 = "Name"
-    value               = "terraform-asg-example"
+    value               = "${var.cluster_name}-asg"
     propagate_at_launch = true
   }
 }
 
 resource "aws_lb" "test_alb" {
-  name               = "terraform-asg-example"
+  name               = "${var.cluster_name}-alb"
   load_balancer_type = var.lb_type
   subnets            = local.aws_subnet_ids
   security_groups    = [var.alb_sg]
@@ -54,7 +54,7 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_lb_target_group" "asg" {
-  name     = "terraform-asg-example"
+  name     = "${var.cluster_name}-tg"
   port     = var.instance_server_port
   protocol = var.lb_listner_protocol
   vpc_id   = data.aws_vpc.default.id

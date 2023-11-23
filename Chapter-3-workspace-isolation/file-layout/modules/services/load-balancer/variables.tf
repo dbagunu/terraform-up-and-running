@@ -47,11 +47,6 @@ variable "alb_sg" {
   description = "Security group ID for ALB"
 }
 
-# Load Balancer listener
-variable "lb_listner_port" {
-  default = 80
-  type    = number
-}
 variable "lb_listner_protocol" {
   default = "HTTP"
   type    = string

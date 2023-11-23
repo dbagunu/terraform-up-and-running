@@ -14,16 +14,16 @@ resource "aws_security_group" "alb_sg" {
   name = "${var.cluster_name}-alb-sg"
   # Allow inbound HTTP requests
   ingress {
-    from_port   = var.alb_port
-    to_port     = var.alb_port
+    from_port   = local.alb_ingress_from_port
+    to_port     = local.alb_ingress_to_port
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = local.all_ips
   }
 
   egress {
-    from_port   = 0
-    to_port     = 0
+    from_port   = local.alb_egress_from_port
+    to_port     = local.alb_egress_to_port
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = local.all_ips
   }
 }

@@ -39,7 +39,7 @@ resource "aws_lb" "test_alb" {
 
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.test_alb.arn
-  port              = var.lb_listner_port
+  port              = local.lb_listner_port
   protocol          = var.lb_listner_protocol
 
   default_action {
